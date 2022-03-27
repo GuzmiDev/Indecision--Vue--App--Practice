@@ -29,7 +29,7 @@ export default {
       const { answer, image } = await fetch("https://yesno.wtf/api").then(
         (resp) => resp.json()
       );
-      this.answer = answer == "yes" ? "Si" : "No";
+      this.answer = answer == "yes" ? "Si!" : "No!";
       this.url = image;
     },
   },
