@@ -1,0 +1,61 @@
+<template>
+  <h2>{{ customTilte }}</h2>
+  <p>{{ counter }} <sup>2</sup> = {{ squareCounter }}</p>
+  <button @click="decrementar">-1</button>
+  <button @click="aumentar">+1</button>
+</template>
+
+<script>
+export default {
+  props: {
+    title: String,
+    start: {
+      type: Number,
+      default: 10,
+      validator(value) {
+        return value > 100;
+      },
+    },
+  },
+  name: "Counter",
+  data() {
+    return {
+      counter: this.start,
+    };
+  },
+  methods: {
+    aumentar() {
+      this.counter++;
+    },
+    decrementar() {
+      this.counter--;
+    },
+  },
+  computed: {
+    squareCounter() {
+      return this.counter * this.counter;
+    },
+    customTilte() {
+      return this.title || "Counter";
+    },
+  },
+};
+</script>
+
+<style>
+button {
+  background-color: #64b687;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 5px 15px;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #5aa67b;
+  transition: 0.3s ease-in-out;
+}
+</style>
