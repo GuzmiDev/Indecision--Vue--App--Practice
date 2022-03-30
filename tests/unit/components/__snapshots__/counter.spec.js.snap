@@ -2,5 +2,6 @@
 
 exports[`Counter Component Debe mostrarse correctamente 1`] = `
 <h2>Counter</h2>
-<p>11 <sup>2</sup> = 121</p><button>-1</button><button>+1</button>
+<p>100 <sup>2</sup> = 10000</p>
+<p data-testid="counter">100</p><button>-1</button><button>+1</button>
 `;
