@@ -11,18 +11,21 @@ export default {
     title: String,
     start: {
       type: Number,
-      default: 10,
+      default: 11,
       validator(value) {
-        return value > 100;
+        return value > 10;
       },
     },
   },
+
   name: "Counter",
+
   data() {
     return {
       counter: this.start,
     };
   },
+
   methods: {
     aumentar() {
       this.counter++;
@@ -31,6 +34,7 @@ export default {
       this.counter--;
     },
   },
+
   computed: {
     squareCounter() {
       return this.counter * this.counter;
