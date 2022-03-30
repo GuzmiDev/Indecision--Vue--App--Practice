@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Indecision from "./components/indecision.vue";
+import Indecision from "./components/Indecision.vue";
 export default {
   name: "App",
   components: {

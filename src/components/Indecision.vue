@@ -1,5 +1,5 @@
 <template>
-  <img v-if="url" :src="url" alt="bg" />
+  <img v-if="img" :src="img" alt="bg" />
   <div class="bg-dark"></div>
   <div class="indecision-container">
     <input v-model="quesetion" type="text" placeholder="Hazme una pregunta" />
@@ -19,23 +19,29 @@ export default {
     return {
       quesetion: null,
       answer: null,
-      url: null,
+      img: null,
       isValidQuestion: false,
     };
   },
   methods: {
     async getAnswer() {
-      this.answer = "Pensando...";
-      const { answer, image } = await fetch("https://yesno.wtf/api").then(
-        (resp) => resp.json()
-      );
-      this.answer = answer == "yes" ? "Si!" : "No!";
-      this.url = image;
+      try {
+        this.answer = "Pensando...";
+        const data = await fetch("https://yesno.wtf/api");
+        const { answer, image } = await data.json();
+        this.answer = answer == "yes" ? "Si!" : "No!";
+        this.img = image;
+      } catch (error) {
+        console.log("IndecisionComponent: ", error);
+        this.answer = "No se pudo cargar el API!";
+        this.img = null;
+      }
     },
   },
   watch: {
-    quesetion(value, oldValue) {
+    quesetion(value) {
       this.isValidQuestion = false;
+      console.log({ value });
       if (!value.includes("?")) return;
       this.isValidQuestion = true;
       this.getAnswer();
